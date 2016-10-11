@@ -1,0 +1,21 @@
+Storyboarding
+=============
+
+Constants: nav bar + search bar + mailbox button + sign in/out + username
+Homepage: categories
+Listings: popular items based on selected category (title, price, seller, rating) + filtering based on price, rating, recent, size, season
+Individual listings: display photos of items (limit to 5) + description + available delivery/collection method + price + title + rating + seller profile (username + 250char intro) + size + season + ordering list below
+Chat: photo/video button + history of messages + input box + send button
+Mailbox: list of chats + filtering based on completed deal (mutual feedback complete), recent, category
+Shopping Cart: total amount + list of items + subtotal (before delivery fee) + edit/delete
+Payment: PayPal/bank transfer
+Selling: upload photos + info (description, price, size, title, season)
+Profile: overall rating + username/name + profile photo + description (250char max) + listings (sell)
+*Transaction history: delivery tracking + seller info + filtering (completed/not)
+
+Other Requirements
+==================
+- high efficiency (load within 3s, no/little lag, low data consumption)
+- persistent login (3 days)
+- user buy multiple items from multiple users at same time
+- multiuser login
