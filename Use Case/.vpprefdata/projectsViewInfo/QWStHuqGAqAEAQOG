@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ProjectsViewInfo>
-	<DiagramOpenInfos activeDiagramId="1h99HuqGAqAEAQWD">
-		<Info bounds="Re:0.0,0.0,1534.0,669.0" diagramId="1h99HuqGAqAEAQWD" maximized="true" offsetX="0" offsetY="0"/>
+	<DiagramOpenInfos activeDiagramId="8o_bzeqGAqAEAQU6">
+		<Info bounds="Re:0.0,0.0,0.0,0.0" diagramId="1h99HuqGAqAEAQWD" maximized="true" offsetX="0" offsetY="0"/>
+		<Info bounds="Re:0.0,0.0,1534.0,669.0" diagramId="8o_bzeqGAqAEAQU6" maximized="true" offsetX="0" offsetY="0"/>
 	</DiagramOpenInfos>
 	<DiagramLastActivated>
-		<Diagram id="1h99HuqGAqAEAQWD" time="1475199565135"/>
+		<Diagram id="8o_bzeqGAqAEAQU6" time="1476191318632"/>
+		<Diagram id="1h99HuqGAqAEAQWD" time="1476191318608"/>
 	</DiagramLastActivated>
 </ProjectsViewInfo>
