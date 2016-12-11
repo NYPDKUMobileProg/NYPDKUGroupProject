@@ -1,11 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ProjectsViewInfo>
-	<DiagramOpenInfos activeDiagramId="8o_bzeqGAqAEAQU6">
+	<DiagramOpenInfos activeDiagramId="w79wZRqD.AAAAQXY">
 		<Info bounds="Re:0.0,0.0,0.0,0.0" diagramId="1h99HuqGAqAEAQWD" maximized="true" offsetX="0" offsetY="0"/>
-		<Info bounds="Re:0.0,0.0,1534.0,669.0" diagramId="8o_bzeqGAqAEAQU6" maximized="true" offsetX="0" offsetY="0"/>
+		<Info bounds="Re:0.0,0.0,0.0,0.0" diagramId="8o_bzeqGAqAEAQU6" maximized="true" offsetX="0" offsetY="0"/>
+		<Info bounds="Re:0.0,0.0,0.0,0.0" diagramId="User Story" maximized="true" offsetX="0" offsetY="0"/>
+		<Info bounds="Re:0.0,0.0,0.0,0.0" diagramId="jOLCiRqGAqAyIgWP" maximized="true" offsetX="0" offsetY="0"/>
+		<Info bounds="Re:0.0,0.0,1534.0,557.0" diagramId="w79wZRqD.AAAAQXY" maximized="true" offsetX="0" offsetY="161"/>
 	</DiagramOpenInfos>
 	<DiagramLastActivated>
-		<Diagram id="8o_bzeqGAqAEAQU6" time="1476191318632"/>
-		<Diagram id="1h99HuqGAqAEAQWD" time="1476191318608"/>
+		<Diagram id="w79wZRqD.AAAAQXY" time="1480254816364"/>
+		<Diagram id="jOLCiRqGAqAyIgWP" time="1480254816344"/>
+		<Diagram id="8o_bzeqGAqAEAQU6" time="1480254701871"/>
+		<Diagram id="1h99HuqGAqAEAQWD" time="1479905855381"/>
+		<Diagram id="User Story" time="1479905184749"/>
+		<Diagram id="Use Case Statement" time="0"/>
+		<Diagram id="UeXceler Use Case" time="0"/>
+		<Diagram id="Sprint" time="0"/>
 	</DiagramLastActivated>
 </ProjectsViewInfo>

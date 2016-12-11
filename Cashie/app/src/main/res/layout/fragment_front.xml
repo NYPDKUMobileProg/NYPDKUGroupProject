@@ -1,0 +1,54 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.cashie.cashie.FrontFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="43"
+        android:background="#000000"
+        app:srcCompat="@drawable/shopping_event_banner"
+        android:id="@+id/imageView10"
+        android:contentDescription="@string/banner" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="57">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/mens_wear"
+            android:id="@+id/imageView11"
+            android:layout_marginEnd="16dp"
+            android:layout_weight="1"
+            android:contentDescription="@string/men"
+            tools:ignore="NestedWeights" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/womens_wear"
+            android:id="@+id/imageView12"
+            android:layout_marginEnd="16dp"
+            android:layout_weight="1"
+            android:contentDescription="@string/women" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/accessories"
+            android:id="@+id/imageView13"
+            android:layout_weight="1"
+            android:contentDescription="@string/accessories" />
+
+    </LinearLayout>
+</LinearLayout>

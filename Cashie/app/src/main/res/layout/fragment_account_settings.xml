@@ -1,0 +1,80 @@
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.cashie.cashie.AccountSettingsFragment">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/profile_photo"
+        android:layout_gravity="center"
+        android:layout_row="0"
+        android:text="@string/profile_photo" />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            app:srcCompat="@drawable/ic_action_name"
+            android:layout_marginBottom="16dp"
+            android:id="@+id/profilePhotoImage" />
+
+        <Button
+            android:text="@string/upload"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/profile_upload_button"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:onClick="uploadPhoto" />
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/profile_name"
+        android:layout_row="1"
+        android:layout_column="0"
+        android:labelFor="@+id/profile_name_field"
+        android:text="@string/name" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_row="1"
+        android:layout_column="1"
+        android:ems="10"
+        android:layout_marginBottom="16dp"
+        android:id="@+id/profile_name_field"
+        android:inputType="textPersonName" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_row="2"
+        android:layout_column="0"
+        android:id="@+id/profile_email"
+        android:text="@string/e_mail" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_row="2"
+        android:layout_column="1"
+        android:id="@+id/profile_email_field" />
+
+    <Button
+        android:text="@string/update"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_row="3"
+        android:layout_column="1"
+        android:layout_gravity="end"
+        android:id="@+id/profile_update_button"
+        android:onClick="onUpdateProfilePressed" />
+</GridLayout>

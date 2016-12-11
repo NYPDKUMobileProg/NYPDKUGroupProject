@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "543411020447",
+    "firebase_url": "https://cashie-e7c50.firebaseio.com",
+    "project_id": "cashie-e7c50",
+    "storage_bucket": "cashie-e7c50.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:543411020447:android:d4dfc54386a82930",
+        "android_client_info": {
+          "package_name": "com.example.cashie.cashie"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "543411020447-it438bvvsu2tibp33quh0jmsvhc3dtma.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.cashie.cashie",
+            "certificate_hash": "F582F29FDE58235E33BC1A5B0D1BF9567F3CC3E2"
+          }
+        },
+        {
+          "client_id": "543411020447-ok048l843np3p1d7u2bfqikn3q03n1dv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBDWvYqI4gmqjY__41LkSVOQut-DjIvDHc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "543411020447-ok048l843np3p1d7u2bfqikn3q03n1dv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
