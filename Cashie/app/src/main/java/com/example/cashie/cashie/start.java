@@ -22,8 +22,9 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.cashie.cashie.Entity.Cart;
 import com.example.cashie.cashie.Entity.Profile;
-import com.example.cashie.cashie.dummy.DummyContent;
+import com.example.cashie.cashie.Controller.ItemController;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -32,8 +33,11 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -42,8 +46,15 @@ import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.ArrayList;
 
+import static com.example.cashie.cashie.Controller.ItemController.addItem;
+
 public class start extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, AccountSettingsFragment.OnFragmentInteractionListener, FrontFragment.OnFragmentInteractionListener, MenFragment.OnListFragmentInteractionListener, LoginFragment.OnFragmentInteractionListener, RegisterFragment.OnFragmentInteractionListener {
+        implements NavigationView.OnNavigationItemSelectedListener,
+        AccountSettingsFragment.OnFragmentInteractionListener,
+        FrontFragment.OnFragmentInteractionListener,
+        MenFragment.OnListFragmentInteractionListener,
+        LoginFragment.OnFragmentInteractionListener,
+        RegisterFragment.OnFragmentInteractionListener {
 
     private ArrayList<Fragment> fragmentArrayList = new ArrayList<Fragment>();
     private FragmentTransaction fragmentTransaction;
@@ -91,7 +102,6 @@ public class start extends AppCompatActivity
                     // User is signed in
                     Log.d(TAG, "onAuthStateChanged:signed_in" + user.getUid());
                     if (userProfile == null) {
-                        System.out.println("User Photo URL: " + user.getPhotoUrl());
                         if (user.getPhotoUrl() == null) {
                             userProfile = new Profile(null, user.getDisplayName(), user.getEmail(), false);
                         } else {
@@ -152,7 +162,19 @@ public class start extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         getMenuInflater().inflate(R.menu.start, menu);
+        MenuItem cart = menu.findItem(R.id.action_cart);
+        MenuItem items = menu.findItem(R.id.action_items);
+        if (user != null) {
+            cart.setVisible(true);
+            items.setVisible(true);
+            items.setTitle("" + Cart.getNumItems());
+        } else {
+            cart.setVisible(false);
+            items.setVisible(false);
+            items.setTitle("" + 0);
+        }
         return true;
     }
 
@@ -165,6 +187,10 @@ public class start extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            return true;
+        } else if (id == R.id.action_cart || id == R.id.action_items) {
+            Intent intent = new Intent(this, ItemListActivity.class);
+            startActivity(intent);
             return true;
         }
 
@@ -188,11 +214,37 @@ public class start extends AppCompatActivity
                 break;
             case R.id.shop_men:
                 // TODO handle men action
-                MenFragment men = new MenFragment();
-                fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                showProgressDialog("Loading items...");
+                DatabaseReference menItem = FirebaseDatabase.getInstance().getReference().child("men");
+                menItem.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        ItemController.ITEMS.clear();
+                        for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
+                            ItemController.Item item = postSnapshot.getValue(ItemController.Item.class);
+                            item.tag = "Men";
+                            addItem(item);
+                        }
 
-                removeFragmentArrayList();
-                addCenterFragments(men);
+                        StorageReference menRef = storage.getInstance().getReferenceFromUrl("gs://cashie-e7c50.appspot.com/men/");
+
+                        MenFragment men = new MenFragment();
+                        fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                        men.newInstance(1, ItemController.ITEMS);
+
+                        removeFragmentArrayList();
+                        addCenterFragments(men);
+                        hideProgressDialog();
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                        // Getting Post failed, log a message
+                        Log.w(TAG, "loadPost:onCancelled", databaseError.toException());
+                        // ...
+                        hideProgressDialog();
+                    }
+                });
                 break;
             case R.id.shop_women:
                 // TODO handle women action
@@ -267,8 +319,9 @@ public class start extends AppCompatActivity
     }
 
     @Override
-    public void onListFragmentInteraction(DummyContent.DummyItem item) {
-
+    public void onListFragmentInteraction(ItemController.Item item) {
+        Cart.addToCart(item);
+        supportInvalidateOptionsMenu();
     }
 
     public void onSubmitPressed(View view) {
@@ -427,11 +480,12 @@ public class start extends AppCompatActivity
         return valid;
     }
 
-    private void updateUI(FirebaseUser user) {
+    public void updateUI(FirebaseUser user) {
         hideProgressDialog();
+
+        supportInvalidateOptionsMenu();
         Menu navMenu = navigationView.getMenu();
         if (user != null) {
-
             navMenu.findItem(R.id.account).setVisible(true);
             navMenu.findItem(R.id.logout).setVisible(true);
             navMenu.findItem(R.id.login).setVisible(false);
@@ -536,10 +590,10 @@ public class start extends AppCompatActivity
                                         if (task.isSuccessful()) {
                                             Log.d(TAG, "User Profile Updated");
                                             Toast.makeText(start.this, "Profile has been updated.", Toast.LENGTH_SHORT).show();
-                                            hideProgressDialog();
                                         } else {
                                             Toast.makeText(start.this, "Update failed!", Toast.LENGTH_SHORT).show();
                                         }
+                                        hideProgressDialog();
                                     }
                                 });
                     }
@@ -558,10 +612,10 @@ public class start extends AppCompatActivity
                                 if (task.isSuccessful()) {
                                     Log.d(TAG, "User Profile Updated");
                                     Toast.makeText(start.this, "Profile has been updated.", Toast.LENGTH_SHORT).show();
-                                    hideProgressDialog();
                                 } else {
                                     Toast.makeText(start.this, "Update failed!", Toast.LENGTH_SHORT).show();
                                 }
+                                hideProgressDialog();
                             }
                         });
             }

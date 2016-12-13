@@ -9,11 +9,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
-import com.example.cashie.cashie.dummy.DummyContent;
-import com.example.cashie.cashie.dummy.DummyContent.DummyItem;
+import com.example.cashie.cashie.Controller.ItemController.Item;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -31,8 +30,9 @@ public class MenFragment extends Fragment {
     // TODO: Customize parameters
     private int mColumnCount = 1;
     private OnListFragmentInteractionListener mListener;
+    private static List<Item> ITEMS = new ArrayList<Item>();
 
-/**
+    /**
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
      */
@@ -42,9 +42,10 @@ public class MenFragment extends Fragment {
 
     // TODO: Customize parameter initialization
     @SuppressWarnings("unused")
-    public static MenFragment newInstance(int columnCount) {
+    public static MenFragment newInstance(int columnCount, List<Item> itemList) {
         MenFragment fragment = new MenFragment();
         Bundle args = new Bundle();
+        ITEMS = itemList;
         args.putInt(ARG_COLUMN_COUNT, columnCount);
         fragment.setArguments(args);
         return fragment;
@@ -73,7 +74,7 @@ public class MenFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new MyMenRecyclerViewAdapter(DummyContent.ITEMS, mListener));
+            recyclerView.setAdapter(new MyMenRecyclerViewAdapter(ITEMS, mListener));
         }
 
         return view;
@@ -109,6 +110,6 @@ public class MenFragment extends Fragment {
 
     public interface OnListFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onListFragmentInteraction(DummyItem item);
+        void onListFragmentInteraction(Item item);
     }
 }

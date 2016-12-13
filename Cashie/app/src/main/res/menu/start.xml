@@ -8,6 +8,7 @@
         android:orderInCategory="100"
         android:title="@string/action_settings"
         app:showAsAction="never" />
+
     <item
         android:id="@+id/action_cart"
         android:orderInCategory="300"
@@ -15,6 +16,7 @@
         app:showAsAction="always"
         android:icon="@drawable/ic_cart"
         android:visible="false" />
+
     <item
         android:id="@+id/action_items"
         android:orderInCategory="400"
