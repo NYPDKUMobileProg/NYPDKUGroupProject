@@ -57,3 +57,5 @@ Currently Using Software:
 Balsamiq Mock Ups - https://balsamiq.com
 
 Visual Paradigm CE - https://www.visual-paradigm.com/download/community.jsp
+
+Google Firebase - https://firebase.google.com/
