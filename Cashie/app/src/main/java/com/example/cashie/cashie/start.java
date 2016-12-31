@@ -226,11 +226,11 @@ public class start extends AppCompatActivity
                             addItem(item);
                         }
 
-                        StorageReference menRef = storage.getInstance().getReferenceFromUrl("gs://cashie-e7c50.appspot.com/men/");
+                        StorageReference menRef = FirebaseStorage.getInstance().getReferenceFromUrl("gs://cashie-e7c50.appspot.com/men/");
 
                         MenFragment men = new MenFragment();
                         fragmentTransaction = getSupportFragmentManager().beginTransaction();
-                        men.newInstance(1, ItemController.ITEMS);
+                        MenFragment.newInstance(1, ItemController.ITEMS);
 
                         removeFragmentArrayList();
                         addCenterFragments(men);
@@ -503,8 +503,8 @@ public class start extends AppCompatActivity
             mProgressDialog = new ProgressDialog(this);
             mProgressDialog.setMessage(string);
             mProgressDialog.setIndeterminate(true);
+            mProgressDialog.show();
         }
-        mProgressDialog.show();
     }
 
     public void hideProgressDialog() {
